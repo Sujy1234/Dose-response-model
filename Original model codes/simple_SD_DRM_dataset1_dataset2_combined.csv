@@ -1,0 +1,209 @@
+"dose","risk","risk_log10","abfail","dataset","scenario","curve","fr"
+2,1.06999942750541e-06,-5.9706164546805,"Treatable","Dataset 1","Varying %MIC","0% MIC",0.05
+2.5,3.38363137186715e-06,-5.47061695706454,"Treatable","Dataset 1","Varying %MIC","0% MIC",0.05
+3,1.06999427551546e-05,-4.97061854579021,"Treatable","Dataset 1","Varying %MIC","0% MIC",0.05
+3.5,3.3835798520232e-05,-4.47062356976901,"Treatable","Dataset 1","Varying %MIC","0% MIC",0.05
+4,0.000106994275704153,-3.97063945686246,"Treatable","Dataset 1","Varying %MIC","0% MIC",0.05
+4.5,0.000338306471094008,-3.47068969498902,"Treatable","Dataset 1","Varying %MIC","0% MIC",0.05
+5,0.00106942775411922,-2.97084854914495,"Treatable","Dataset 1","Varying %MIC","0% MIC",0.05
+5.5,0.00337791904746576,-2.4713507625981,"Treatable","Dataset 1","Varying %MIC","0% MIC",0.05
+6,0.010642958628835,-1.97293762602932,"Treatable","Dataset 1","Varying %MIC","0% MIC",0.05
+6.5,0.0332703232583512,-1.47794297945471,"Treatable","Dataset 1","Varying %MIC","0% MIC",0.05
+7,0.101474327009694,-0.993643820295922,"Treatable","Dataset 1","Varying %MIC","0% MIC",0.05
+7.5,0.28706406093502,-0.54202117571874,"Treatable","Dataset 1","Varying %MIC","0% MIC",0.05
+8,0.656991482581293,-0.182440260717117,"Treatable","Dataset 1","Varying %MIC","0% MIC",0.05
+2,3.50203134713567e-07,-6.45567997080908,"Treatable","Dataset 1","Varying %MIC","0.5% MIC",0.05
+2.5,1.10743913028788e-06,-5.95568013517855,"Treatable","Dataset 1","Varying %MIC","0.5% MIC",0.05
+3,3.50202582855008e-06,-5.45568065518135,"Treatable","Dataset 1","Varying %MIC","0.5% MIC",0.05
+3.5,1.10743361135812e-05,-4.95568229949318,"Treatable","Dataset 1","Varying %MIC","0.5% MIC",0.05
+4,3.50197064028501e-05,-4.45568749926218,"Treatable","Dataset 1","Varying %MIC","0.5% MIC",0.05
+4.5,0.000110737842457742,-3.95570394224566,"Treatable","Dataset 1","Varying %MIC","0.5% MIC",0.05
+5,0.000350141882089039,-3.45575593815736,"Treatable","Dataset 1","Varying %MIC","0.5% MIC",0.05
+5.5,0.00110682675836316,-2.95592035001086,"Treatable","Dataset 1","Varying %MIC","0.5% MIC",0.05
+6,0.00349590699880276,-2.4564401293683,"Treatable","Dataset 1","Varying %MIC","0.5% MIC",0.05
+6.5,0.0110133020348284,-1.95808245028324,"Treatable","Dataset 1","Varying %MIC","0.5% MIC",0.05
+7,0.0344142042657261,-1.46326226786528,"Treatable","Dataset 1","Varying %MIC","0.5% MIC",0.05
+7.5,0.104832094458181,-0.979505737273714,"Treatable","Dataset 1","Varying %MIC","0.5% MIC",0.05
+8,0.295455085585298,-0.529508530231197,"Treatable","Dataset 1","Varying %MIC","0.5% MIC",0.05
+2,1.40318436980813e-07,-6.85288526159483,"Treatable","Dataset 1","Varying %MIC","1% MIC",0.05
+2.5,4.43725791443583e-07,-6.35288532729856,"Treatable","Dataset 1","Varying %MIC","1% MIC",0.05
+3,1.40318348429425e-06,-5.85288553566709,"Treatable","Dataset 1","Varying %MIC","1% MIC",0.05
+3.5,4.4372490538569e-06,-5.35288619452433,"Treatable","Dataset 1","Varying %MIC","1% MIC",0.05
+4,1.40317462411499e-05,-4.85288827795928,"Treatable","Dataset 1","Varying %MIC","1% MIC",0.05
+4.5,4.43716045360754e-05,-4.35289486633497,"Treatable","Dataset 1","Varying %MIC","1% MIC",0.05
+5,0.000140308602697758,-3.85291570039268,"Treatable","Dataset 1","Varying %MIC","1% MIC",0.05
+5.5,0.000443627458075246,-3.3529815812751,"Treatable","Dataset 1","Varying %MIC","1% MIC",0.05
+6,0.00140220046567929,-2.85318989299227,"Treatable","Dataset 1","Varying %MIC","1% MIC",0.05
+6.5,0.00442742881014224,-2.35384841322337,"Treatable","Dataset 1","Varying %MIC","1% MIC",0.05
+7,0.0139338572048595,-1.85592864445879,"Treatable","Dataset 1","Varying %MIC","1% MIC",0.05
+7.5,0.0434025266153669,-1.36248498792591,"Treatable","Dataset 1","Varying %MIC","1% MIC",0.05
+8,0.13091856493526,-0.882998763859859,"Treatable","Dataset 1","Varying %MIC","1% MIC",0.05
+2,5.57074884000031e-08,-7.25408642148326,"Untreatable","Dataset 1","Varying %MIC","2.5% MIC",0.05
+2.5,1.76162535447943e-07,-6.75408644767337,"Untreatable","Dataset 1","Varying %MIC","2.5% MIC",0.05
+3,5.57074744333974e-07,-6.25408653036666,"Untreatable","Dataset 1","Varying %MIC","2.5% MIC",0.05
+3.5,1.76162395792989e-06,-5.75408679196565,"Untreatable","Dataset 1","Varying %MIC","2.5% MIC",0.05
+4,5.57073347795534e-06,-5.25408761910691,"Untreatable","Dataset 1","Varying %MIC","2.5% MIC",0.05
+4.5,1.76160999304509e-05,-4.75409023475287,"Untreatable","Dataset 1","Varying %MIC","2.5% MIC",0.05
+5,5.57059383118341e-05,-4.25409850610821,"Untreatable","Dataset 1","Varying %MIC","2.5% MIC",0.05
+5.5,0.000176147035246821,-3.75412466208695,"Untreatable","Dataset 1","Varying %MIC","2.5% MIC",0.05
+6,0.000556919762039754,-3.25420737109832,"Untreatable","Dataset 1","Varying %MIC","2.5% MIC",0.05
+6.5,0.00176007475810924,-2.75446888539903,"Untreatable","Dataset 1","Varying %MIC","2.5% MIC",0.05
+7,0.00555526114533111,-2.25529552064561,"Untreatable","Dataset 1","Varying %MIC","2.5% MIC",0.05
+7.5,0.0174619960245771,-1.75790611498821,"Untreatable","Dataset 1","Varying %MIC","2.5% MIC",0.05
+8,0.0541842439500784,-1.26612698210245,"Untreatable","Dataset 1","Varying %MIC","2.5% MIC",0.05
+2,1.13474533476321e-05,-4.94510159408039,"Treatable","Dataset 2","Varying %MIC","0% MIC",0.05
+2.5,3.58833579944262e-05,-4.44510692208808,"Treatable","Dataset 2","Varying %MIC","0% MIC",0.05
+3,0.000113468739240563,-3.94512377058808,"Treatable","Dataset 2","Varying %MIC","0% MIC",0.05
+3.5,0.000358775642796183,-3.44517704878926,"Treatable","Dataset 2","Varying %MIC","0% MIC",0.05
+4,0.00113410818571669,-2.94534551491514,"Treatable","Dataset 2","Varying %MIC","0% MIC",0.05
+4.5,0.00358196956799062,-2.44587810818824,"Treatable","Dataset 2","Varying %MIC","0% MIC",0.05
+5,0.0112833774912541,-1.94756088206744,"Treatable","Dataset 2","Varying %MIC","0% MIC",0.05
+5.5,0.0352478035059323,-1.45286794122506,"Treatable","Dataset 2","Varying %MIC","0% MIC",0.05
+6,0.107273643989761,-0.969506966531819,"Treatable","Dataset 2","Varying %MIC","0% MIC",0.05
+6.5,0.301513912507621,-0.520692643769638,"Treatable","Dataset 2","Varying %MIC","0% MIC",0.05
+7,0.678498083129362,-0.168451374957105,"Treatable","Dataset 2","Varying %MIC","0% MIC",0.05
+7.5,0.972357481927428,-0.0121740397176455,"Treatable","Dataset 2","Varying %MIC","0% MIC",0.05
+8,0.99998820125904,-5.12415832166337e-06,"Treatable","Dataset 2","Varying %MIC","0% MIC",0.05
+2,9.9279099718963e-07,-6.00314216975328,"Untreatable","Dataset 2","Varying %MIC","0.5% MIC",0.05
+2.5,3.13947742203169e-06,-5.50314263588077,"Untreatable","Dataset 2","Varying %MIC","0.5% MIC",0.05
+3,9.92786561893055e-06,-5.00314410996943,"Untreatable","Dataset 2","Varying %MIC","0.5% MIC",0.05
+3.5,3.13943306895492e-05,-4.50314877143455,"Untreatable","Dataset 2","Varying %MIC","0.5% MIC",0.05
+4,9.92742209934283e-05,-4.00316351216721,"Untreatable","Dataset 2","Varying %MIC","0.5% MIC",0.05
+4.5,0.000313898958428815,-3.50321012536198,"Untreatable","Dataset 2","Varying %MIC","0.5% MIC",0.05
+5,0.00099229883562657,-3.00335751824974,"Untreatable","Dataset 2","Varying %MIC","0.5% MIC",0.05
+5.5,0.00313455932873774,-2.50382350572626,"Untreatable","Dataset 2","Varying %MIC","0.5% MIC",0.05
+6,0.00987879583771645,-2.00529598991709,"Untreatable","Dataset 2","Varying %MIC","0.5% MIC",0.05
+6.5,0.0309071231110536,-1.50994141794354,"Untreatable","Dataset 2","Varying %MIC","0.5% MIC",0.05
+7,0.0945100938658519,-1.02452180549986,"Untreatable","Dataset 2","Varying %MIC","0.5% MIC",0.05
+7.5,0.269443155558243,-0.569532843951572,"Untreatable","Dataset 2","Varying %MIC","0.5% MIC",0.05
+8,0.629459115219763,-0.201032473039971,"Untreatable","Dataset 2","Varying %MIC","0.5% MIC",0.05
+2,5.84273280201941e-07,-6.23338397425142,"Untreatable","Dataset 2","Varying %MIC","1% MIC",0.05
+2.5,1.84763317412351e-06,-5.73338424862865,"Untreatable","Dataset 2","Varying %MIC","1% MIC",0.05
+3,5.8427174397524e-06,-5.23338511614114,"Untreatable","Dataset 2","Varying %MIC","1% MIC",0.05
+3.5,1.8476178123672e-05,-4.73338785949353,"Untreatable","Dataset 2","Varying %MIC","1% MIC",0.05
+4,5.84256382404336e-05,-4.23339653468611,"Untreatable","Dataset 2","Varying %MIC","1% MIC",0.05
+4.5,0.000184746420381798,-3.73342396767464,"Untreatable","Dataset 2","Varying %MIC","1% MIC",0.05
+5,0.000584102796350794,-3.23351071460124,"Untreatable","Dataset 2","Varying %MIC","1% MIC",0.05
+5.5,0.00184592905445491,-2.73378499445357,"Untreatable","Dataset 2","Varying %MIC","1% MIC",0.05
+6,0.00582569892945717,-2.23465196334962,"Untreatable","Dataset 2","Varying %MIC","1% MIC",0.05
+6.5,0.0183067074685692,-1.73738975820039,"Untreatable","Dataset 2","Varying %MIC","1% MIC",0.05
+7,0.0567532305755737,-1.24600941199894,"Untreatable","Dataset 2","Varying %MIC","1% MIC",0.05
+7.5,0.168699126850858,-0.772887165216659,"Untreatable","Dataset 2","Varying %MIC","1% MIC",0.05
+8,0.442489226318619,-0.35409729899403,"Untreatable","Dataset 2","Varying %MIC","1% MIC",0.05
+2,5.6737682629926e-07,-6.2461284063193,"Untreatable","Dataset 2","Varying %MIC","2.5% MIC",0.05
+2.5,1.79420196222413e-06,-5.74612867269507,"Untreatable","Dataset 2","Varying %MIC","2.5% MIC",0.05
+3,5.67375377724666e-06,-5.24612951512165,"Untreatable","Dataset 2","Varying %MIC","2.5% MIC",0.05
+3.5,1.79418747612292e-05,-4.74613217913378,"Untreatable","Dataset 2","Varying %MIC","2.5% MIC",0.05
+4,5.6736089178e-05,-4.24614060345293,"Untreatable","Dataset 2","Varying %MIC","2.5% MIC",0.05
+4.5,0.000179404262316107,-3.7461672431293,"Untreatable","Dataset 2","Varying %MIC","2.5% MIC",0.05
+5,0.000567216059422115,-3.24625148159849,"Untreatable","Dataset 2","Varying %MIC","2.5% MIC",0.05
+5.5,0.00179259495083717,-2.74651783117899,"Untreatable","Dataset 2","Varying %MIC","2.5% MIC",0.05
+6,0.00565770443901203,-2.2473597440227,"Untreatable","Dataset 2","Varying %MIC","2.5% MIC",0.05
+6.5,0.0177820357332222,-1.75001852136942,"Untreatable","Dataset 2","Varying %MIC","2.5% MIC",0.05
+7,0.0551581299123947,-1.25839046661685,"Untreatable","Dataset 2","Varying %MIC","2.5% MIC",0.05
+7.5,0.164245489866148,-0.784506547205853,"Untreatable","Dataset 2","Varying %MIC","2.5% MIC",0.05
+8,0.432989233732142,-0.363522902235207,"Untreatable","Dataset 2","Varying %MIC","2.5% MIC",0.05
+2,9.13878346331387e-08,-7.0391116128366,"Treatable","Dataset 1","Varying resistant fraction","fr = 0",0
+2.5,2.88993679320448e-07,-6.53911165574265,"Treatable","Dataset 1","Varying resistant fraction","fr = 0",0
+3,9.13877970520893e-07,-6.0391117914298,"Treatable","Dataset 1","Varying resistant fraction","fr = 0",0
+3.5,2.88993303498852e-06,-5.53911222052093,"Treatable","Dataset 1","Varying resistant fraction","fr = 0",0
+4,9.13874212260524e-06,-5.03911357743969,"Treatable","Dataset 1","Varying resistant fraction","fr = 0",0
+4.5,2.88989545255136e-05,-4.53911786838578,"Treatable","Dataset 1","Varying resistant fraction","fr = 0",0
+5,9.13836630698217e-05,-4.03913143744768,"Treatable","Dataset 1","Varying resistant fraction","fr = 0",0
+5.5,0.000288951966420647,-3.53917434565951,"Treatable","Dataset 1","Varying resistant fraction","fr = 0",0
+6,0.00091346092843636,-3.03931002403928,"Treatable","Dataset 1","Varying resistant fraction","fr = 0",0
+6.5,0.00288576536205642,-2.53973898374384,"Treatable","Dataset 1","Varying resistant fraction","fr = 0",0
+7,0.00909715211347051,-2.04109454339096,"Treatable","Dataset 1","Varying resistant fraction","fr = 0",0
+7.5,0.0284857790242422,-1.54537189903323,"Treatable","Dataset 1","Varying resistant fraction","fr = 0",0
+8,0.0873363241456057,-1.05880509083092,"Treatable","Dataset 1","Varying resistant fraction","fr = 0",0
+2,1.01173955324718e-07,-6.9949312712364,"Treatable","Dataset 1","Varying resistant fraction","fr = 0.01",0.01
+2.5,3.19940103632455e-07,-6.49493131885725,"Treatable","Dataset 1","Varying resistant fraction","fr = 0.01",0.01
+3,1.0117390923936e-06,-5.99493146906024,"Treatable","Dataset 1","Varying resistant fraction","fr = 0.01",0.01
+3.5,3.19939643023126e-06,-5.49493194410001,"Treatable","Dataset 1","Varying resistant fraction","fr = 0.01",0.01
+4,1.01173448616709e-05,-4.99493344631241,"Treatable","Dataset 1","Varying resistant fraction","fr = 0.01",0.01
+4.5,3.19935036805497e-05,-4.49493819674592,"Treatable","Dataset 1","Varying resistant fraction","fr = 0.01",0.01
+5,0.000101168842510546,-3.99495321881255,"Treatable","Dataset 1","Varying resistant fraction","fr = 0.01",0.01
+5.5,0.000319888979443128,-3.49500072162105,"Treatable","Dataset 1","Varying resistant fraction","fr = 0.01",0.01
+6,0.00101122796827924,-2.99515092729214,"Treatable","Dataset 1","Varying resistant fraction","fr = 0.01",0.01
+6.5,0.00319428891713902,-2.49562580534076,"Treatable","Dataset 1","Varying resistant fraction","fr = 0.01",0.01
+7,0.0100663873609173,-1.9971263616925,"Treatable","Dataset 1","Varying resistant fraction","fr = 0.01",0.01
+7.5,0.0314876218599938,-1.50186013873097,"Treatable","Dataset 1","Varying resistant fraction","fr = 0.01",0.01
+8,0.0962242020102344,-1.01671568183367,"Treatable","Dataset 1","Varying resistant fraction","fr = 0.01",0.01
+2,1.40318436980813e-07,-6.85288526159483,"Treatable","Dataset 1","Varying resistant fraction","fr = 0.05",0.05
+2.5,4.43725791443583e-07,-6.35288532729856,"Treatable","Dataset 1","Varying resistant fraction","fr = 0.05",0.05
+3,1.40318348429425e-06,-5.85288553566709,"Treatable","Dataset 1","Varying resistant fraction","fr = 0.05",0.05
+3.5,4.4372490538569e-06,-5.35288619452433,"Treatable","Dataset 1","Varying resistant fraction","fr = 0.05",0.05
+4,1.40317462411499e-05,-4.85288827795928,"Treatable","Dataset 1","Varying resistant fraction","fr = 0.05",0.05
+4.5,4.43716045360754e-05,-4.35289486633497,"Treatable","Dataset 1","Varying resistant fraction","fr = 0.05",0.05
+5,0.000140308602697758,-3.85291570039268,"Treatable","Dataset 1","Varying resistant fraction","fr = 0.05",0.05
+5.5,0.000443627458075246,-3.3529815812751,"Treatable","Dataset 1","Varying resistant fraction","fr = 0.05",0.05
+6,0.00140220046567929,-2.85318989299227,"Treatable","Dataset 1","Varying resistant fraction","fr = 0.05",0.05
+6.5,0.00442742881014224,-2.35384841322337,"Treatable","Dataset 1","Varying resistant fraction","fr = 0.05",0.05
+7,0.0139338572048595,-1.85592864445879,"Treatable","Dataset 1","Varying resistant fraction","fr = 0.05",0.05
+7.5,0.0434025266153669,-1.36248498792591,"Treatable","Dataset 1","Varying resistant fraction","fr = 0.05",0.05
+8,0.13091856493526,-0.882998763859859,"Treatable","Dataset 1","Varying resistant fraction","fr = 0.05",0.05
+2,1.89249036997019e-07,-6.72296632175098,"Untreatable","Dataset 1","Varying resistant fraction","fr = 0.1",0.1
+2.5,5.98457879585901e-07,-6.22296641051594,"Untreatable","Dataset 1","Varying resistant fraction","fr = 0.1",0.1
+3,1.89248875859249e-06,-5.72296669153502,"Untreatable","Dataset 1","Varying resistant fraction","fr = 0.1",0.1
+3.5,5.98456267852931e-06,-5.2229675801349,"Untreatable","Dataset 1","Varying resistant fraction","fr = 0.1",0.1
+4,1.89247264180681e-05,-4.72297039008322,"Untreatable","Dataset 1","Varying resistant fraction","fr = 0.1",0.1
+4.5,5.98440151368118e-05,-4.22297927588452,"Untreatable","Dataset 1","Varying resistant fraction","fr = 0.1",0.1
+5,0.000189231148457258,-3.72300737485976,"Untreatable","Dataset 1","Varying resistant fraction","fr = 0.1",0.1
+5.5,0.000598279018307113,-3.223096227633,"Untreatable","Dataset 1","Varying resistant fraction","fr = 0.1",0.1
+6,0.00189070091819232,-2.72337716488923,"Untreatable","Dataset 1","Varying resistant fraction","fr = 0.1",0.1
+6.5,0.005966708653517,-2.22426516766269,"Untreatable","Dataset 1","Varying resistant fraction","fr = 0.1",0.1
+7,0.018746953810118,-1.7270692906527,"Untreatable","Dataset 1","Varying resistant fraction","fr = 0.1",0.1
+7.5,0.0580902406484713,-1.23589682438301,"Untreatable","Dataset 1","Varying resistant fraction","fr = 0.1",0.1
+8,0.172419631944804,-0.763413286307795,"Untreatable","Dataset 1","Varying resistant fraction","fr = 0.1",0.1
+2,1.77869096118499e-08,-7.74989950189408,"Treatable","Dataset 2","Varying resistant fraction","fr = 0",0
+2.5,5.62471459408798e-08,-7.24989950936902,"Treatable","Dataset 2","Varying resistant fraction","fr = 0",0
+3,1.77869082240711e-07,-6.74989953577882,"Treatable","Dataset 2","Varying resistant fraction","fr = 0",0
+3.5,5.62471317189228e-07,-6.24989961917936,"Treatable","Dataset 2","Varying resistant fraction","fr = 0",0
+4,1.77868939921222e-06,-5.74989988327369,"Treatable","Dataset 2","Varying resistant fraction","fr = 0",0
+4.5,5.62469893528039e-06,-5.24990071841582,"Treatable","Dataset 2","Varying resistant fraction","fr = 0",0
+5,1.77867516251151e-05,-4.74990335939791,"Treatable","Dataset 2","Varying resistant fraction","fr = 0",0
+5.5,5.62455656986094e-05,-4.24991171087946,"Treatable","Dataset 2","Varying resistant fraction","fr = 0",0
+6,0.000177853280342921,-3.74993812023535,"Treatable","Dataset 2","Varying resistant fraction","fr = 0",0
+6.5,0.000562313317971297,-3.25002163042809,"Treatable","Dataset 2","Varying resistant fraction","fr = 0",0
+7,0.0017771100477969,-2.75028567761332,"Treatable","Dataset 2","Varying resistant fraction","fr = 0",0
+7.5,0.00560892566285554,-2.25112031581605,"Treatable","Dataset 2","Varying resistant fraction","fr = 0",0
+8,0.0176296564616987,-1.75375615044839,"Treatable","Dataset 2","Varying resistant fraction","fr = 0",0
+2,1.3108420937602e-07,-6.8824496210017,"Untreatable","Dataset 2","Varying resistant fraction","fr = 0.01",0.01
+2.5,4.14524608305378e-07,-6.382449682402,"Untreatable","Dataset 2","Varying resistant fraction","fr = 0.01",0.01
+3,1.31084132104498e-06,-5.8824498770097,"Untreatable","Dataset 2","Varying resistant fraction","fr = 0.01",0.01
+3.5,4.14523835090552e-06,-5.38245049249442,"Untreatable","Dataset 2","Varying resistant fraction","fr = 0.01",0.01
+4,1.31083358868578e-05,-4.88245243882308,"Untreatable","Dataset 2","Varying resistant fraction","fr = 0.01",0.01
+4.5,4.14516102822393e-05,-4.38245859362741,"Untreatable","Dataset 2","Varying resistant fraction","fr = 0.01",0.01
+5,0.000131075626857435,-3.88247805663484,"Untreatable","Dataset 2","Varying resistant fraction","fr = 0.01",0.01
+5.5,0.000414438790748539,-3.38253960215373,"Untreatable","Dataset 2","Varying resistant fraction","fr = 0.01",0.01
+6,0.00130998340185284,-2.88273420703842,"Untreatable","Dataset 2","Varying resistant fraction","fr = 0.01",0.01
+6.5,0.0041366672653419,-2.38334941036807,"Untreatable","Dataset 2","Varying resistant fraction","fr = 0.01",0.01
+7,0.013022880618656,-1.88529294062083,"Untreatable","Dataset 2","Varying resistant fraction","fr = 0.01",0.01
+7.5,0.0406050651483051,-1.39141978837473,"Untreatable","Dataset 2","Varying resistant fraction","fr = 0.01",0.01
+8,0.122856100040585,-0.910603275096027,"Untreatable","Dataset 2","Varying resistant fraction","fr = 0.01",0.01
+2,5.84273280201941e-07,-6.23338397425142,"Untreatable","Dataset 2","Varying resistant fraction","fr = 0.05",0.05
+2.5,1.84763317412351e-06,-5.73338424862865,"Untreatable","Dataset 2","Varying resistant fraction","fr = 0.05",0.05
+3,5.8427174397524e-06,-5.23338511614114,"Untreatable","Dataset 2","Varying resistant fraction","fr = 0.05",0.05
+3.5,1.8476178123672e-05,-4.73338785949353,"Untreatable","Dataset 2","Varying resistant fraction","fr = 0.05",0.05
+4,5.84256382404336e-05,-4.23339653468611,"Untreatable","Dataset 2","Varying resistant fraction","fr = 0.05",0.05
+4.5,0.000184746420381798,-3.73342396767464,"Untreatable","Dataset 2","Varying resistant fraction","fr = 0.05",0.05
+5,0.000584102796350794,-3.23351071460124,"Untreatable","Dataset 2","Varying resistant fraction","fr = 0.05",0.05
+5.5,0.00184592905445491,-2.73378499445357,"Untreatable","Dataset 2","Varying resistant fraction","fr = 0.05",0.05
+6,0.00582569892945717,-2.23465196334962,"Untreatable","Dataset 2","Varying resistant fraction","fr = 0.05",0.05
+6.5,0.0183067074685692,-1.73738975820039,"Untreatable","Dataset 2","Varying resistant fraction","fr = 0.05",0.05
+7,0.0567532305755737,-1.24600941199894,"Untreatable","Dataset 2","Varying resistant fraction","fr = 0.05",0.05
+7.5,0.168699126850858,-0.772887165216659,"Untreatable","Dataset 2","Varying resistant fraction","fr = 0.05",0.05
+8,0.442489226318619,-0.35409729899403,"Untreatable","Dataset 2","Varying resistant fraction","fr = 0.05",0.05
+2,1.15075932971553e-06,-5.93901549540201,"Untreatable","Dataset 2","Varying resistant fraction","fr = 0.1",0.1
+2.5,3.63901599331751e-06,-5.43901603570415,"Untreatable","Dataset 2","Varying resistant fraction","fr = 0.1",0.1
+3,1.15075337066006e-05,-4.93901774434455,"Untreatable","Dataset 2","Varying resistant fraction","fr = 0.1",0.1
+3.5,3.63895640290712e-05,-4.43902314751634,"Untreatable","Dataset 2","Varying resistant fraction","fr = 0.1",0.1
+4,0.000115069378199162,-3.93904023369858,"Untreatable","Dataset 2","Varying resistant fraction","fr = 0.1",0.1
+4.5,0.000363836057056699,-3.43909426347817,"Untreatable","Dataset 2","Varying resistant fraction","fr = 0.1",0.1
+5,0.00115009812150935,-2.93926510589664,"Untreatable","Dataset 2","Varying resistant fraction","fr = 0.1",0.1
+5.5,0.00363240939605847,-2.43980520959225,"Untreatable","Dataset 2","Varying resistant fraction","fr = 0.1",0.1
+6,0.0114416407438936,-1.94151169276979,"Untreatable","Dataset 2","Varying resistant fraction","fr = 0.1",0.1
+6.5,0.035736060943828,-1.44689331989525,"Untreatable","Dataset 2","Varying resistant fraction","fr = 0.1",0.1
+7,0.108701596622155,-0.963764076897153,"Untreatable","Dataset 2","Varying resistant fraction","fr = 0.1",0.1
+7.5,0.305040884282691,-0.515641948756755,"Untreatable","Dataset 2","Varying resistant fraction","fr = 0.1",0.1
+8,0.683603780574944,-0.165195544139867,"Untreatable","Dataset 2","Varying resistant fraction","fr = 0.1",0.1

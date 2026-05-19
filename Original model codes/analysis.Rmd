@@ -1,0 +1,185 @@
+---
+title: "analysis"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(DEoptim)
+results_path = "results/"
+```
+
+# Fit the model to the data
+
+```{r cache=TRUE}
+z = source("codes/helpers.R")
+z2 = source("codes/PAWN.R")
+
+ndat = 2; # Number of datasets
+AICe = seq(1, ndat); AICb = seq(1, ndat);  # Uncorrected AICs
+AICce = seq(1, ndat); AICcb = seq(1, ndat);  # AIC with small sample correction
+expdev = seq(1, ndat); betadev = seq(1, ndat);  # Minimum deviances of the models
+
+# The best parameters for the fitted models
+bestr = seq(1, ndat); bestalpha = seq(1, ndat); bestbeta = seq(1, ndat);
+# Optionally store the p_values of the fit (comment out llines with p_beta and p_exp)
+p_exp = seq(1, ndat); p_beta = seq(1, ndat);
+p_expbeta = seq(1, ndat);
+mu_exp = seq(1, ndat);  # Calculate mu for the exponential model
+# Cochran-Armitage test from Haas 2014, page 301
+zca = seq(1, ndat);
+chisq_exp = seq(1, ndat); chisq_beta = seq(1, ndat);
+set.seed(0)
+for (ind in seq(ndat)){
+  ds = getdat(ind)  # Get and store the dataset
+  solexp = DEoptim(exp_deviance, parameter_list=ds, -12, -5, DEoptim.control(trace = 50));  # Fit the exponential solution
+  solbeta = DEoptim(betap_deviance, parameter_list=ds, c(-12,-12), c(50, 50), DEoptim.control(trace = 50));  # Fit the beta Poisson model
+  Ke=1; Kb = 2;  # Number of parameters in exp and beta P models
+  # Compute the uncorrected AICs
+  AICe[ind] = solexp$optim$bestval + 2*Ke;
+  AICb[ind] = solbeta$optim$bestval + 2*Kb;
+  n = ds$N; # The number of data points
+  # Compute the AICs with small sample correction
+  AICce[ind] = AICe[ind] + 2*Ke*(Ke+1)/(n-Ke-1)
+  AICcb[ind] = AICb[ind] + 2*Kb*(Kb+1)/(n-Kb-1)
+  # Store the remaining parameters
+  expdev[ind] = solexp$optim$bestval
+  betadev[ind] = solbeta$optim$bestval
+  bestr[ind] = 10^solexp$optim$bestmem
+  bestalpha[ind] = 10^solbeta$optim$bestmem[1]
+  bestbeta[ind] = 10^solbeta$optim$bestmem[2]
+  mu_exp[ind] = -1/ds$t * log1mexpm(bestr[ind])
+  p_exp[ind] = 1 - pchisq(expdev[ind],n-1)
+  p_beta[ind] = 1 - pchisq(betadev[ind],n-2)
+  chisq_exp[ind] = qchisq(0.95, n-1)
+  chisq_beta[ind] = qchisq(0.95, n-2)
+  p_expbeta[ind] = 1 - pchisq(expdev[ind] - betadev[ind],1)
+  x = log(ds$dose);
+  t = ds$ntot;
+  p = ds$nill;
+  n = t
+  xbar = sum(n*x) / sum(n);
+  pbar = sum(p) / sum(n);
+  z = sum((x - xbar) * p) / sqrt(pbar * (1-pbar) * sum(n * (x-xbar)^2));
+  zca[ind] = z;
+}
+
+# Store the important columns in a data frame
+results = data.frame(expdev = expdev, chisq_exp = chisq_exp,
+                     betadev = betadev, chisq_beta = chisq_beta,
+                     dev_diff = expdev-betadev,
+                     pexp = p_exp, pbeta = p_beta,
+                     pexpbeta = p_expbeta,
+                     # AIC_exp = AICe, AIC_beta = AICb,
+                     AICc_exp = AICce, AICc_beta = AICcb,
+                     r = bestr,
+                     alpha = bestalpha, beta = bestbeta,
+                     mu_r = mu_exp,
+                     modchisq = ifelse(expdev-betadev < qchisq(0.95,1), "exp", "beta"),
+                     mod = ifelse(AICcb<AICce, "beta", "exp"),
+                     pass_trend = ifelse(zca>qnorm(0.95), "true", "false"),
+                     zca=zca, pca = 1-pnorm(zca))
+results2 = data.frame(dev=as.vector(t(matrix(c(expdev, betadev, expdev-betadev), 2, 3))),
+                      chisq = as.vector(t(matrix(c(chisq_exp, chisq_beta, c(3.84,3.84)), 2, 3))),
+                      p=as.vector(t(matrix(c(p_exp, p_beta, p_expbeta), 2, 3))))
+round(results2,2)
+# Save the results
+save(results, file=paste(results_path, "fit.Rda", sep=""))
+```
+
+# Create data frames to make the effect plot
+
+```{r cache=TRUE}
+# Make the relevant data frames
+top = get_plot_dataframes(1, results);
+bottom = get_plot_dataframes(2, results);
+save(top, bottom, file=paste(results_path, "effect.Rda", sep=""))
+# Some NaNs will be produced by the getalphabeta function.
+# The verifying beta snippets and plot suggest that this does not significantly alter conclusions.
+```
+
+# Sensitivity analysis
+
+Define some parameters.
+```{r}
+
+# PAWN parameters (main ones)
+
+n=15;
+Nu = 100;
+Nc = 100;
+# Critical value pre-multipliers
+crit_c = c(1.22,1.36,1.48,1.63,1.73,1.95); # 0.1, 0.05, 0.025, 0.010, 0.005, 0.001
+# Actual critical value based on significance level
+critval = crit_c[2] * sqrt((Nu+Nc)/(Nu*Nc))
+
+
+# PAWN parameters (auxiliary ones)
+npts = 100; seed = 0;
+
+r = 1.066597e-08; # Dataset 1, best fit
+alpha = 1.623144e-01; beta = 1.414959e+06; # Dataset 2, best fit
+Emax =  1224; Ec50 = 9.93; # Antibiotic specifcic parameters
+
+# Sensitivity analysis bounds related parameters
+doselb = 1; doseub = 4;
+factor = 0.5; # Factor of change for Emax, Ec50, alpha and beta.
+```
+
+## Sensitivity at variable dose
+
+### Exponential model
+```{r}
+# Bounds
+lb = c(0.00, 0.0, doselb, Emax-factor*Emax, Ec50-factor*Ec50, r-factor*r, 1.5);
+ub = c(0.05, 0.1, doseub, Emax+factor*Emax, Ec50+factor*Ec50, r+factor*r, 2.5);
+p = getdat(1)  # retrieve dataset
+res_exp = PAWN(get_exprisk, p, lb, ub, Nu, n, Nc, npts, seed, 4)  # run sensitivity analysis
+```
+
+### Beta Poisson model
+```{r}
+# Bounds
+lb = c(0.00, 0.0, doselb, Emax-factor*Emax, Ec50-factor*Ec50, alpha-factor*alpha, beta-factor*beta, 2);
+ub = c(0.05, 0.1, doseub, Emax+factor*Emax, Ec50+factor*Ec50, alpha+factor*alpha, beta+factor*beta, 3);
+p = getdat(2)
+res_beta = PAWN(get_bprisk, p, lb, ub, Nu, n, Nc, npts, seed, 4)  # run sensitivity analysis
+```
+
+## Sensitivity at fixed dose
+
+Fix the dose and perform sensitivity analysis. Changing the value at which the dose is fixed does not change the output very much.
+```{r}
+dval = 1e4;
+```
+
+### Exponential model
+
+```{r}
+# Bounds
+lb = c(0.00, 0.0, Emax-factor*Emax, Ec50-factor*Ec50, r-factor*r, 1.5);
+ub = c(0.05, 0.1, Emax+factor*Emax, Ec50+factor*Ec50, r+factor*r, 2.5);
+p = getdat(1); p$dose = dval;  # get the data and set the dose
+resnd_exp = PAWN(get_exprisk_nodose, p, lb, ub, Nu, n, Nc, npts, seed, 4) # run sensitivity analysis
+```
+
+### Beta Poisson model
+
+```{r}
+# Bounds
+lb = c(0.00, 0.0, Emax-factor*Emax, Ec50-factor*Ec50, alpha-factor*alpha, beta-factor*beta, 2);
+ub = c(0.05, 0.1, Emax+factor*Emax, Ec50+factor*Ec50, alpha+factor*alpha, beta+factor*beta, 3);
+p = getdat(2); p$dose = dval;  # get the data and set the dose
+resnd_beta = PAWN(get_bprisk_nodose, p, lb, ub, Nu, n, Nc, npts, seed, 2)
+```
+
+```{r}
+save(res_exp, resnd_exp, res_beta, resnd_beta, n, critval, Nu, Nc, file=paste(results_path, "sens.Rda", sep=""))
+```
+
+# Verify beta procedure
+
+```{r}
+b_res = get_beta_verification(2, results);
+save(b_res, file=paste(results_path, "betaver.Rda", sep=""))
+```

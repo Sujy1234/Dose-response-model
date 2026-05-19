@@ -1,0 +1,398 @@
+---
+title: "Make Figures"
+output:
+  pdf_document: default
+  html_notebook: default
+---
+
+# Load libraries
+```{r}
+# Load the required libraries
+library(ggplot2)
+library(cowplot)
+library(egg)
+library(xtable)
+
+# Load the rquired functions
+z = source("codes/helpers.R")
+image_path = "images/"
+results_path = "results/"
+```
+
+# Explanatory figure 
+```{r}
+p1 <- ggdraw() + draw_image(paste(image_path, "sdproc.svg", sep=""),  scale = 0.9)
+p2 <- ggdraw() + draw_image(paste(image_path, "arrow.svg", sep=""), scale = 0.9)
+# Use `plot_grid` to assemble figure 1 from the base figures.
+f1 <- plot_grid(p1, p2, labels = c("a", "b"))
+save_plot(paste(image_path, "fig1.png", sep=""), f1, ncol=2)
+# This file is not used anymore to make fig1. Directly edit the SVG instead.
+```
+
+# Fitting figure
+
+## Preliminaries
+Load the data and define some plotting parameters.
+
+```{r}
+load(paste(results_path, "fit.Rda", sep=""))
+# Plot parameters
+lwidth = 2; ht = 0.86; bwidth = 2.5; wd2=0.47
+lty1 = 1; lty2 = 6;
+cex_plot = 1.4; cex_text = 1.5; cex_data = 1.7;
+c1 = "#1b9e77bb";
+```
+
+## Plot and assemble figure
+
+```{r}
+set.seed(0)  # Set seed so we the jitter is reproducible
+# Comment out accordingly for jpeg or pdf
+# jpeg(paste(image_path, "fit_both.jpeg", sep=""),
+#      width = 8, height = 4.2, units = 'in', res = 300)
+pdf(paste(image_path, "fit_both.pdf", sep=""), width = 8, height = 4.2)
+
+# Create the layout of the plot. There are 3 rows and 2 columns.
+# The top row consists of the y label, dataset 1 fits and dataset  fits.
+# The bottom row is entirely allocated for the legend.
+m <- matrix(c(1,2,3,4,4,4), 2, 3, byrow=TRUE)
+layout(mat=m, heights=c(ht,1-ht), widths=c(1-2*wd2, wd2, wd2))
+
+# Create the y axis label
+par(mar=c(0,0,0,0))
+plot(1, type = "n", axes=F, xlab="", ylab="")
+text(0.8,1.05,"P(d)",srt=90, cex=cex_plot)
+
+# Retrieve exponential model fit
+dataset_no = 1;
+ds = getdat(dataset_no)
+r = results$r[dataset_no]
+alpha = results$alpha[dataset_no]
+beta = results$beta[dataset_no]
+dose = 10^seq(log10(min(ds$dose)), log10(max(ds$dose)), 0.02)  # Define the dose
+
+# Plot the first dataset
+par(mar=c(4.0,0.9,0.5,0.5))  # Set the margin for this plot and the next
+## Plot the data
+plot(jitter(log10(ds$dose), factor=0.1), ds$nill/ds$ntot,
+     xlab=expression(Log[10]~(dose)),
+     ylim=c(-0,1), bg = c1, pch = 21, cex=cex_data,
+     cex.axis = cex_plot, cex.lab=cex_plot);
+## Plot the two fits
+lines(log10(dose), 1-exp(-r*dose), lwd=lwidth, lty=lty1)
+lines(log10(dose), 1-(1+dose/beta)^(-alpha), lwd=lwidth, lty=lty2)
+box(lwd=bwidth)
+text(4.0, 0.95, expression(bold("a")), cex=cex_text)
+
+# Retrieve beta Poisson model fit
+dataset_no = 2;
+ds = getdat(dataset_no)
+r = results$r[dataset_no]
+alpha = results$alpha[dataset_no]
+beta = results$beta[dataset_no]
+dose = 10^seq(log10(min(ds$dose)), log10(max(ds$dose)), 0.02)  # Define the dose
+
+# Plot the second dataset
+## Plot the data
+plot(jitter(log10(ds$dose), factor=0.05), ds$nill/ds$ntot,
+     xlab=expression(Log[10]~(dose)), ylab = "",
+     ylim=c(-0,1), bg = c1, pch = 21, cex=cex_data,
+     cex.axis = cex_plot, cex.sub=cex_plot, cex.lab=cex_plot, yaxt='n')
+## PLot the two fits
+lines(log10(dose), 1-exp(-r*dose), lwd=lwidth, lty=lty1)
+lines(log10(dose), 1-(1+dose/beta)^(-alpha), lwd=lwidth, lty=lty2)
+box(lwd=bwidth)
+text(6.0, 0.95, expression(bold("b")), cex=cex_text)
+
+# Plot the legend
+par(mar=c(0,0.1,0,1), lwd=bwidth)  # Reset the margin
+plot(1, type = "n", axes=F, xlab="", ylab="")  # Create empty plot
+legend("topleft", c("Data", "Exponential", "Beta-Poisson"), pch=c(21, NA, NA), 
+       pt.bg=c(c1, NA, NA), pt.lwd=c(1,NA,NA), pt.cex = cex_data,
+       lty=c(NA, lty1, lty2),lwd=c(NA, lwidth, lwidth), 
+       inset = 0.25, cex=cex_plot, horiz = TRUE, bg="transparent")
+
+dev.off()
+```
+
+# View the dose response data
+
+Print out the fitting results in a LaTeX table.
+
+```{r}
+dataset_no = 1
+ds = getdat(dataset_no)
+df_data = data.frame(Dose = ds$dose, Nill = ds$nill, Ntot = ds$ntot)
+xtable(df_data, display=c("d", "e", "d", "d"))
+
+dataset_no = 2
+ds = getdat(dataset_no)
+df_data = data.frame(Dose = ds$dose, Nill = ds$nill, Ntot = ds$ntot)
+xtable(df_data, display=c("d", "e", "d", "d"))
+```
+
+# Effect of fr and C
+
+## Preliminaries
+
+```{r}
+load(paste(results_path, "effect.Rda", sep=""))
+sz = 11; sz_ax = 14; sz_leg = 14; sz_lab = 6;
+```
+
+## Plot and assemble figure
+Make the plots and store them in handles. Then use `grid_extra` from the `cowplot` package to assemble them.
+
+```{r}
+# Exponential, concentration
+llim = -7.8
+df = top[[1]]
+plot1 <- ggplot(df, aes(dose)) +
+  geom_line(aes(y=risk, color=C), size=1.5)+
+  geom_point(aes(y=risk, color=C, shape=abfail), size=4, alpha=0.9)+
+  xlab("")+
+ylab(expression(Log[10]~(P[illness])))+
+labs(color=expression('%'~MIC), shape="Antibiotic")+theme_bw(base_size = sz)+
+  theme(
+        legend.position="top",
+        legend.box="vertical",
+        axis.line = element_line(size=1),
+        axis.text = element_text(face="bold", size=sz_ax),
+        axis.title = element_text(size=sz_ax),
+        axis.text.x = element_blank(),
+        legend.text = element_text(size=sz_leg),
+        legend.title = element_text(size=sz_leg),
+        plot.background = element_blank())+
+  guides(shape = guide_legend(direction = "horizontal", order=2),
+         color = guide_legend(direction = "horizontal", order=1))+
+  scale_y_continuous(limits = c(llim, 0.5))+
+  annotate("text", x=2, y=0, label="a", size=sz_lab, fontface="bold")
+
+# Exponential, fr
+df2 = top[[2]]
+plot2 <- ggplot(df2, aes(dose)) +
+  geom_line(aes(y=risk, color=fr), size=1.5)+
+  geom_point(aes(y=risk, color=fr, shape=abfail), size=4, alpha=0.9)+
+  # xlab(expression(Log[10]~(dose)))+
+  xlab("")+
+  ylab("")+
+  labs(color=expression(f[r]), shape=expression(Antibiotic))+theme_bw(base_size = sz)+
+  theme(legend.position="top",
+        legend.box="vertical",
+        axis.line = element_line(size=1),
+        axis.text = element_text(face="bold", size=sz_ax),
+        axis.title = element_text(size=sz_ax),
+        axis.text.x = element_blank(),
+        axis.text.y = element_blank(),
+        legend.text = element_text(size=sz_leg),
+        legend.title = element_text(size=sz_leg),
+        plot.background = element_blank())+
+  guides(shape = guide_legend(direction = "horizontal", order=2),
+         color = guide_legend(direction = "horizontal", order=1))+
+  scale_y_continuous(limits = c(llim, 0.5))+
+  annotate("text", x=2, y=0, label="b", size=sz_lab, fontface="bold")
+
+# Beta Poisson, concentration
+df = bottom[[1]]
+plot3 <- ggplot(df, aes(dose)) +
+  geom_line(aes(y=riskbp, color=C), size=1.5)+
+  geom_point(aes(y=riskbp, color=C, shape=abfailbp), size=4, alpha=0.9)+
+  xlab(expression(Log[10]~(dose)))+
+  ylab(expression(Log[10]~(P[illness])))+
+  labs(color=expression(Ab.~Conc.~mg.L^{-1}), shape="Antibiotic")+theme_bw(base_size = sz)+
+  # ggtitle(plot_title)+
+  theme(legend.position="none",
+        axis.line = element_line(size=1),
+        axis.text = element_text(face="bold", size=sz_ax),
+        axis.title = element_text(size=sz_ax),
+        legend.text = element_text(size=sz_leg),
+        legend.title = element_text(size=sz_leg))+
+  # annotate("text", x=5, y=-12, label="<same legend as above>", size=4.5)+
+  scale_y_continuous(limits = c(llim, 0.5))+
+  annotate("text", x=2, y=0, label="c", size=sz_lab, fontface="bold")
+
+# Beta Poisson, fr
+df2 = bottom[[2]]
+plot4 <- ggplot(df2, aes(dose)) +
+  geom_line(aes(y=riskbp, color=fr), size=1.5)+
+  geom_point(aes(y=riskbp, color=fr, shape=abfailbp), size=4, alpha=0.9)+
+  xlab(expression(Log[10]~(dose)))+
+  ylab("")+
+  labs(color=expression(f[r]), shape="Antibiotic")+theme_bw(base_size = sz)+
+  theme(legend.position="none",
+        axis.line = element_line(size=1),
+        axis.text = element_text(face="bold", size=sz_ax),
+        axis.title = element_text(size=sz_ax),
+        axis.text.y = element_blank(),
+        legend.text = element_text(size=sz_leg),
+        legend.title = element_text(size=sz_leg),
+        plot.background = element_blank())+
+  # annotate("text", x=5, y=-12, label="<same legend as above>", size=4.5)+
+  scale_y_continuous(limits = c(llim, 0.5))+
+  annotate("text", x=2, y=0, label="d", size=sz_lab, fontface="bold")
+
+# Assemble the plots together and save
+ggsave(paste(image_path, "effect.pdf", sep=""),
+       arrangeGrob(grobs=lapply(list(plot1,
+                               plot2,
+                               plot3,
+                               plot4),
+                          set_panel_size,
+                          width=unit(10, "cm"),
+                          height=unit(9.5, "cm"))),
+       width=23.7, height=25, units="cm")
+```
+
+
+# Sensitivity figure
+
+## Preliminaries
+
+```{r}
+load(paste(results_path, "sens.Rda", sep=""))
+# Define the x axis labels for each sub plot
+parnames1 = c('C', expression(f[r]), 'd', expression(E[max]), 'EC50', 'r', 
+              expression(t[fs]))
+parnames2 = c('C', expression(f[r]), 'd', expression(E[max]), 'EC50', 
+              expression(alpha), expression(beta),expression(t[fs]))
+parnames3 = c('C', expression(f[r]), expression(E[max]), 'EC50', 'r', 
+              expression(t[fs]))
+parnames4 = c('C', expression(f[r]), expression(E[max]), 'EC50', 
+              expression(alpha), expression(beta), expression(t[fs]))
+```
+
+## Plot and assemble figure
+
+```{r}
+# Plot parameters
+lwidth = 5; ht = 0.5; wd=0.5;bwidth = 1.5;
+c1 = "#1b9e7777"; c2 = "#d95f0277"; c3 = "#7570b3"; set.seed(0)
+cex_plot = 1.3; cex_txt = 1.5; rot = 30;
+
+# jpeg(paste(image_path, "sensitivity.jpeg", sep=""),
+#      width = 8, height = 8, units = 'in', res = 300)
+pdf(paste(image_path, "sensitivity.pdf", sep=""),
+     width = 8, height = 8)
+
+# Create the layout
+m <- matrix(c(1,2,3,4), ncol=2, byrow=TRUE)
+layout(mat=m, heights = c(ht,1-ht), widths=c(wd, 1-wd))
+
+# Exponential with dose
+par(mar = c(4,4,0.5,0), lwd=bwidth)
+boxplot(t(res_exp$KS), ylim = c(0, 1), ylab="PAWN index", outline=F,
+        cex.axis = cex_plot, cex.sub=cex_plot, cex.lab=cex_plot, xaxt="n")
+axis(1, labels=FALSE)
+text(x=seq_along(parnames1), y=-0.1, srt = rot, adj= 1, xpd = TRUE, labels = parnames1 , cex=cex_plot)
+xvals = rep(seq(length(parnames1)), n); yvals = as.vector(res_exp$KS)
+points(jitter(xvals,factor=1.5), yvals, bg=c1, pch=21)
+text(0.7, 0.95, expression(bold("a")), cex=cex_txt)
+lines(c(0,10), c(critval, critval), lty=2)
+
+# Beta Poisson with dose
+par(mar=c(4,4,0.5,0.2), lwd=bwidth)
+boxplot(t(res_beta$KS), ylim = c(0, 1), ylab = "", outline=F,
+        cex.axis = cex_plot, cex.sub=cex_plot, cex.lab=cex_plot, xaxt="n", xlab="")
+axis(1, at=seq_along(parnames2), labels=FALSE)
+text(x=seq_along(parnames2), y=-0.1, srt = rot, adj= 1, xpd = TRUE, labels = parnames2 , cex=cex_plot)
+xvals = rep(seq(length(parnames2)), n); yvals = as.vector(res_beta$KS)
+points(jitter(xvals,factor=1.5), yvals, bg=c1, pch=21)
+text(0.7, 0.95, expression(bold("b")), cex=cex_txt)
+lines(c(0,10), c(critval, critval), lty=2)
+
+# Exponential without dose
+par(mar=c(4,4,0.5,0), lwd=bwidth)
+boxplot(t(resnd_exp$KS), ylim = c(0, 1), ylab="PAWN index", outline=F,
+        cex.axis = cex_plot, cex.sub=cex_plot, cex.lab=cex_plot, xaxt="n")
+axis(1, labels=FALSE)
+text(x=seq_along(parnames3), y=-0.1, srt = rot, adj= 1, xpd = TRUE, labels = parnames3 , cex=cex_plot)
+xvals = rep(seq(length(parnames3)), n); yvals = as.vector(resnd_exp$KS)
+points(jitter(xvals,factor=1.5), yvals, bg=c2, pch=21)
+text(0.7, 0.95, expression(bold("c")), cex=cex_txt)
+lines(c(0,10), c(critval, critval), lty=2)
+
+# Beta Poisson without dose
+par(mar=c(4,4,0.5,0.2), lwd=bwidth)
+boxplot(t(resnd_beta$KS), ylim = c(0, 1), outline=F,
+        cex.axis = cex_plot, cex.sub=cex_plot, cex.lab=cex_plot, xaxt="n")
+axis(1, labels=FALSE)
+text(x=seq_along(parnames4), y=-0.1, srt = rot, adj= 1, xpd = TRUE, labels = parnames4 , cex=cex_plot)
+xvals = rep(seq(length(parnames4)), n); yvals = as.vector(resnd_beta$KS)
+points(jitter(xvals,factor=1.5), yvals, bg=c2, pch=21)
+text(0.7, 0.95, expression(bold("d")), cex=cex_txt)
+lines(c(0,10), c(critval, critval), lty=2)
+
+dev.off()
+```
+
+# Verify beta procedure
+
+Plot the $\mu_{s, AB}$ CDF and the corresponding predicted beta CDF.
+
+## Preliminaries
+
+```{r}
+load(paste(results_path, "betaver.Rda", sep=""))
+
+color_list = seq(4)
+color_list[2] = "#a6cee3"; color_list[1] = "#1f78b4"; color_list[3] = "#b2df8a";
+color_list[4] = "#33a02c"; lwidth = 2;
+
+```
+
+## Plot and assemble figure
+
+```{r}
+pdf(paste(image_path, "beta_verify.pdf", sep=""),
+     width = 8, height = 4)
+
+# Define the layout
+par(mfrow=c(1,2))
+
+# Sub plot A : mu vs density for different concentrations
+## Calculate density, define the label and plot the density
+d = density(b_res$mu)
+legend_list = rbind("0% MIC")
+plot(d$x, d$y, lwd = 2, col = color_list[1], type="l", 
+     xlab=expression(paste(mu)), ylab="Density")
+## Loop over other concentrations and repeat
+for (ind in seq(2, nrow(b_res$mu_s))){
+  d = density(b_res$mu_s[ind,])
+  legend_list = rbind(legend_list, stringr::str_glue(b_res$pMIC[ind]*100, "% MIC"))
+  lines(d$x, d$y, lwd = 2, col = color_list[ind])
+}
+legend("topright", legend_list, lty=c(1,1,1,1),
+       lwd=c(lwidth, lwidth, lwidth, lwidth),
+       col=c(color_list))
+# Label position should be at approximately 0.95
+label_position = (par("usr")[3] + par("usr")[4])*0.95
+text(4.5, label_position, expression(bold("A")))  # sub plot label
+
+
+# Sub plot B
+x = seq(-25, 0, 0.5)
+empcdf = ecdf(b_res$r)  # Empirical CDF function
+## Analytical prediction at 0 % MIC
+plot(x, pbeta(10^x, b_res$alpha, b_res$beta), type="l", lwd=2, 
+     xlab=expression(Log[10]~(r)), ylab="CDF")
+## Empirical CDF from samples
+points(x, empcdf(10^x), col = color_list[1])
+## Anlytical CDF from parameters obtained by fitting samples
+lines(x, pbeta(10^x, b_res$alpha_s[1], b_res$beta_s[1]), 
+      col=color_list[1], lty=3, lwd = lwidth)
+legend_list2 = rbind("Analytical", "Empirical", "Fitted")
+for (ind in seq(2, nrow(b_res$mu_s))){
+  ## Empirical CDF from samples
+  empcdf = ecdf(b_res$r_s[ind,])
+  points(x, empcdf(10^(x)),col=color_list[ind])
+  ## Anlytical CDF from parameters obtained by fitting samples
+  lines(x, pbeta(10^x, b_res$alpha_s[ind], b_res$beta_s[ind]), 
+        col=color_list[ind], lty=2, lwd = lwidth)
+}
+legend("bottomright", legend_list2, pch=c(NA, 1, NA),
+       lty=c(1, NA, 2),
+       col=c("#000000", "#000000", "#000000"),
+       lwd=c(2, NA, lwidth), inset = 0.0)
+text(-23.5, 0.95, expression(bold("B")))  # sub plot label
+dev.off()
+```
