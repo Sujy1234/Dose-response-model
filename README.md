@@ -1,6 +1,6 @@
 # Original model codes
 These files are from the study by Chandrasekaran and Jiang (2019).  
-Original GitHub repository: https://github.com/JiangLabUCI/AbResistantDoseResponse
+Original GitHub repository: https://github.com/JiangLabUCI/AbResistantDoseResponse 
 
 
 # Modified model code
