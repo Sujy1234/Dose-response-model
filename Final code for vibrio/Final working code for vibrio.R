@@ -24,11 +24,11 @@ fixed_pMIC <- 2 / 100
 # Antibiotic-specific parameters
 
 antibiotics <- data.frame(
-  antibiotic = c("Cefotaxime", "Oxytetracycline"),
-  MIC = c(0.5, 1),
-  Emax = c(120, 28),
-  EC50 = c(0.2, 3),
-  fixed_fr = c(0.09, 0.22)
+  antibiotic = c("Cefepime", "Doxycycline"),
+  MIC = c(0.5, 0.5),
+  Emax = c(58.97, 63.03),
+  EC50 = c(0.1137, 0.2184 ),
+  fixed_fr = c(0.09, 0.20)
 )
 
 # Safe calculation of log(1 - exp(-x))
@@ -96,9 +96,8 @@ calc_bp_sd_drm <- function(fr, C, Emax, EC50, seed = 0) {
   
   status <- ifelse(
     p_r_only >= p_s_only,
-    "Untreatable",
-    "Treatable"
-  )
+    "Less likely treatable",
+    "More likely treatable")
   
   data.frame(
     dose = log10(doses),
@@ -217,7 +216,7 @@ plot_fr <- ggplot(results_fr, aes(x = dose, y = riskbp_log10)) +
     x = expression(Log[10]~dose),
     y = expression(Log[10]~(P[illness])),
     colour = expression(f[r]),
-    shape = "Outcome",
+    shape = "AB",
     title = "Beta-Poisson SD-DRM: varying resistant fraction"
   ) +
   theme_bw() +
