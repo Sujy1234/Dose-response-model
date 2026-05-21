@@ -68,7 +68,7 @@ calc_exp <- function(fr, C) {
   p_s <- exp(-r_exp * Nr) * (1 - exp(-r_s * Ns))
   
   data.frame(dose = log10(doses), risk = log10(pmax(risk, 1e-12)),
-             outcome = ifelse(p_r >= p_s, "Untreatable", "Treatable"))
+             outcome = ifelse(p_r >= p_s,   "Lower treatability", "Higher treatability"))
 }
 
 # Dataset 2: beta-Poisson SD-DRM
@@ -85,7 +85,7 @@ calc_bp <- function(fr, C, seed = 0) {
   p_s <- (1 + Nr / beta_bp)^(-alpha_bp) * (1 - (1 + Ns / beta_s)^(-alpha_s))
   
   data.frame(dose = log10(doses), risk = log10(pmax(risk, 1e-12)),
-             outcome = ifelse(p_r >= p_s, "Untreatable", "Treatable"))
+             outcome = ifelse(p_r >= p_s,   "Lower treatability", "Higher treatability"))
 }
 
 # Generate model outputs
@@ -130,7 +130,7 @@ make_plot <- function(data, label, xlab, ylab, legend_title, show_x, show_y, sho
     geom_line(aes(y = risk, colour = variable), linewidth = 1.5) +
     geom_point(aes(y = risk, colour = variable, shape = outcome), size = 4, alpha = 0.9) +
     xlab(xlab) + ylab(ylab) +
-    labs(colour = legend_title, shape = "Antibiotic") +
+    labs(colour = legend_title, shape = "AB") +
     theme_bw(base_size = sz) +
     theme(
       legend.position = ifelse(show_legend, "top", "none"),
