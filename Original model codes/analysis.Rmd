@@ -6,6 +6,9 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(DEoptim)
+library(foreach)
+library(doParallel)
+library(fitdistrplus)
 results_path = "results/"
 ```
 
